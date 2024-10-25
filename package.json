@@ -10,7 +10,9 @@
     "e2e": "ng e2e",
     "prepare": "husky",
     "lint:format": "npx --no-install lint-staged && npx --no-install pretty-quick --staged",
-    "publish": "npm run build && az storage blob upload-batch -s dist/app/browser -d $web --account-name oshynkarenkone001"
+    "azure:clean": "az storage blob delete-batch -s $web --account-name oshynkarenkone001",
+    "azure:publish": "az storage blob upload-batch -s dist/app/browser -d $web --account-name oshynkarenkone001",
+    "azure:deploy": "npm run build && npm run azure:clean && npm run azure:publish"
   },
   "private": true,
   "dependencies": {
